@@ -4,6 +4,11 @@ node_js:
   - 10.15.3
 env:
   - NODE_ENV="test"
+services:
+  - postgresql
+before_script:
+  - yarn db:setup:user
+  - yarn db:reset
 script:
   - yarn test
   - yarn lint
