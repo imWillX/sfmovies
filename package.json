@@ -25,6 +25,9 @@
     "test:raw": "NODE_ENV=test mocha test --require test/setup.js --recursive --timeout 30000"
   },
   "dependencies": {
-    "hapi": "16.6.1"
+    "bookshelf": "^1.2.0",
+    "hapi": "16.6.1",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1"
   }
 }
