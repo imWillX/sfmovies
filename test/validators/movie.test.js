@@ -10,7 +10,7 @@ describe('movie validator', () => {
 
     it('is required', () => {
       const payload = {};
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieValidator.post);
 
       expect(result.error.details[0].path[0]).to.eql('name');
       expect(result.error.details[0].type).to.eql('any.required');
@@ -21,7 +21,7 @@ describe('movie validator', () => {
         name: 'a'.repeat(260),
         release_year: 2000
       };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieValidator.post);
 
       expect(result.error.details[0].path[0]).to.eql('name');
       expect(result.error.details[0].type).to.eql('string.max');
@@ -36,7 +36,7 @@ describe('movie validator', () => {
         name: '2020',
         release_year: 1877
       };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieValidator.post);
 
       expect(result.error.details[0].path[0]).to.eql('release_year');
       expect(result.error.details[0].type).to.eql('number.min');
@@ -47,7 +47,7 @@ describe('movie validator', () => {
         name: '2020',
         release_year: 10000
       };
-      const result = Joi.validate(payload, MovieValidator);
+      const result = Joi.validate(payload, MovieValidator.post);
 
       expect(result.error.details[0].path[0]).to.eql('release_year');
       expect(result.error.details[0].type).to.eql('number.max');
