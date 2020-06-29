@@ -41,6 +41,14 @@ describe('movie validator', () => {
         expect(result.error.details[0].type).to.eql('number.base');
       });
 
+      it('release_year_end is less than release_year', async () => {
+        const payload = { release_year: '2014', release_year_end: '2013' };
+        const result = Joi.validate(payload, MovieValidator.get);
+
+        expect(result.error.details[0].path[0]).to.eql('release_year_end');
+        expect(result.error.details[0].type).to.eql('number.min');
+      });
+
     });
 
   });

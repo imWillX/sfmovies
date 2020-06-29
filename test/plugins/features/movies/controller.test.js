@@ -56,6 +56,13 @@ describe('movie controller', () => {
       expect(movie.get('release_year')).to.be.within(query.release_year, query.release_year_end);
     });
 
+    it('release_year_end is less than release_year', async () => {
+      const query = { release_year: 9999, release_year_end: 0 };
+      const movies = await Controller.get(query);
+
+      expect(movies.length).to.eql(0);
+    });
+
   });
 
 });
