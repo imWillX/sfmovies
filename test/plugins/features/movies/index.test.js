@@ -35,9 +35,7 @@ describe('movies integration', () => {
         payload: { name: 'Lob Angeles' }
       });
 
-      expect(response.result).to.have.all.keys([
-        'error'
-      ]);
+      expect(response.statusCode).to.eql(404);
     });
 
     describe('get', () => {
