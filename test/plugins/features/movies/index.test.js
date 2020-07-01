@@ -28,7 +28,7 @@ describe('movies integration', () => {
       expect(response.result.object).to.eql('movie');
     });
 
-    it('returns an error when trying to access a movie that does not exists', async () => {
+    it('returns an error when trying to access a movie that does not exist', async () => {
       const response = await Movies.inject({
         url: '/movies/55555/locations',
         method: 'POST',
