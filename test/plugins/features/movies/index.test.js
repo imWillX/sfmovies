@@ -17,6 +17,27 @@ describe('movies integration', () => {
       expect(response.result.object).to.eql('movie');
     });
 
+    it('creates a movie by location', async () => {
+      const response = await Movies.inject({
+        url: '/movies/1/locations',
+        method: 'POST',
+        payload: { name: 'Lob Angeles' }
+      });
+
+      expect(response.statusCode).to.eql(200);
+      expect(response.result.object).to.eql('movie');
+    });
+
+    it('returns an error when trying to access a movie that does not exist', async () => {
+      const response = await Movies.inject({
+        url: '/movies/55555/locations',
+        method: 'POST',
+        payload: { name: 'Lob Angeles' }
+      });
+
+      expect(response.statusCode).to.eql(404);
+    });
+
     describe('get', () => {
 
       it('gets a movie', async () => {
